@@ -1,0 +1,57 @@
+<html>
+<head>
+  <style>
+    .terminal {
+      float: left;
+      border: #000 solid 5px;
+      font-family: "DejaVu Sans Mono", "Liberation Mono", monospace;
+      font-size: 16px;
+      color: #f0f0f0;
+      background: #000;
+
+    }
+  </style>
+  <script type="text/javascript" src="js/jquery-1.4.4.min.js"></script>
+  <script type="text/javascript" src="js/term.js"></script>
+  <script type="text/javascript" src="js/jbinary.js"></script>
+  <script type="text/javascript" src="js/pako.js"></script>
+  <script type="text/javascript" src="js/ttyplay.js"></script>
+  <script>
+    $(function() {
+        var term = new Terminal({
+            cols: 80,
+            rows: 24,
+            screenKeys: true
+        });
+
+        term.open(document.body);
+
+        var player = new TTYPlay(term, { url: 'test.tty.gz', speed:5, max_frame:500 });
+
+        /*
+
+        // create a player, without loading up content
+        var player = new TTYPlay(term);
+
+        // explicitly load content
+        player.parse(data);
+
+        // start player
+        player.play();
+
+        // stop playback
+        player.stop();
+
+        // manually step playback.  (can be attached to UI buttons)
+        player.step();
+        player.step();
+        player.step();
+
+        */
+    });
+  </script>
+</head>
+<body>
+
+</body>
+</html>
