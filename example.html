@@ -5,10 +5,9 @@
       float: left;
       border: #000 solid 5px;
       font-family: "DejaVu Sans Mono", "Liberation Mono", monospace;
-      font-size: 16px;
+      font-size: 14px;
       color: #f0f0f0;
       background: #000;
-
     }
   </style>
   <script type="text/javascript" src="js/jquery-1.4.4.min.js"></script>
@@ -18,16 +17,28 @@
   <script type="text/javascript" src="js/ttyplay.js"></script>
   <script>
     $(function() {
-        var term = new Terminal({
-            cols: 80,
-            rows: 24,
+        
+		var term = new Terminal({
+            cols: 130,
+            rows: 45,
             screenKeys: true
         });
 
         term.open(document.body);
-
-        var player = new TTYPlay(term, { url: 'test.tty.gz', speed:5, max_frame:500 });
-
+		
+        var player = new TTYPlay(term, { url: 'test.tty.gz', speed:1, max_frame:500 });
+		
+		$("#stop").click(function() {
+			player.stop();
+		});
+		
+		$("#step").click(function() {
+			player.step();
+		});
+		
+		$("#play").click(function() {
+			player.play();
+		});
         /*
 
         // create a player, without loading up content
@@ -49,9 +60,12 @@
 
         */
     });
+	
   </script>
 </head>
 <body>
-
+<input type="button" id="stop" value="Pause">
+<input type="button" id="step" value="Step">
+<input type="button" id="play" value="Play">
 </body>
 </html>
